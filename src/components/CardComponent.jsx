@@ -13,17 +13,15 @@ import RecipeDetailsModal from './RecipeDetailsModal';
 
 export const RecipeReviewCard = ({ recipe }) => {
   const [open, setOpen] = useState(false);
-
   const handleOpen = () => setOpen(true);
-
   const handleClose = () => setOpen(false);
 
-  const favourites = useSelector((state) => state.recipe?.favourites); // get favourites from the redux store
-
+  // favourites from redux store
+  const favourites = useSelector((state) => state.recipe?.favourites);
   const dispatch = useDispatch();
-
   const isFavourite = favourites.some((fav) => fav.id === recipe?.id);
 
+  // Function to handle favorite button click
   const handleFavouriteClick = () => {
     try {
       if (isFavourite) {
@@ -32,7 +30,7 @@ export const RecipeReviewCard = ({ recipe }) => {
         dispatch(addFavourite(recipe));
       }
     } catch (error) {
-      console.error(`Error while handling favourite \n ${error}`);
+      console.error(`Error while handling favorite:\n${error}`);
     }
   };
 
@@ -40,24 +38,23 @@ export const RecipeReviewCard = ({ recipe }) => {
     <>
       <Card
         sx={{
-          width: 345, // Fixed width to prevent card from resizing
+          width: 345, 
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          borderRadius: '8px',
-          boxShadow: 3,
-          height: '400px', // Fixed height for the card
+          borderRadius: '8px', 
+          boxShadow: 3, 
+          height: '400px', 
         }}
       >
-        {/* Recipe Image with Fixed Size */}
         <CardMedia
           component="img"
-          image={recipe?.recipe?.image}
-          alt={recipe?.recipe?.label}
+          image={recipe?.image} 
+          alt={recipe?.name}
           sx={{
-            height: '200px', // Fixed image height for consistency
+            height: '200px', 
             width: '100%',
-            objectFit: 'cover',
+            objectFit: 'cover', 
             borderTopLeftRadius: '8px',
             borderTopRightRadius: '8px',
           }}
@@ -67,14 +64,13 @@ export const RecipeReviewCard = ({ recipe }) => {
           sx={{
             padding: '16px',
             textAlign: 'center',
-            height: '100px', // Fixed content height to keep the card layout consistent
+            height: '100px', 
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            overflow: 'hidden', // Prevent content overflow
+            overflow: 'hidden', 
           }}
         >
-          {/* Recipe Title */}
           <Typography
             variant="h6"
             component="h2"
@@ -82,15 +78,14 @@ export const RecipeReviewCard = ({ recipe }) => {
               fontWeight: 'bold',
               mb: 1,
               fontSize: '18px',
-              overflow: 'hidden', // Hide overflow
-              textOverflow: 'ellipsis', // Ensure title doesn't overflow
-              whiteSpace: 'nowrap', // Prevent wrapping
+              overflow: 'hidden', 
+              textOverflow: 'ellipsis', 
+              whiteSpace: 'nowrap', 
             }}
           >
-            {recipe?.recipe?.label || 'Recipe Title'}
+            {recipe?.name || 'Recipe Title'}
           </Typography>
 
-          {/* Meal Type */}
           <Typography
             variant="body2"
             sx={{
@@ -101,7 +96,7 @@ export const RecipeReviewCard = ({ recipe }) => {
               whiteSpace: 'nowrap',
             }}
           >
-            {recipe?.recipe?.mealType || 'Meal Type'}
+            {recipe?.mealType || 'Meal Type'} 
           </Typography>
         </CardContent>
 
@@ -115,21 +110,19 @@ export const RecipeReviewCard = ({ recipe }) => {
             borderBottomRightRadius: '8px',
           }}
         >
-          {/* Add to Favorites Button */}
           <IconButton aria-label="add to favorites" onClick={handleFavouriteClick}>
             <FavoriteIcon color={isFavourite ? 'error' : 'disabled'} />
           </IconButton>
 
-          {/* View More Button */}
           <Button
             variant="outlined"
             color="success"
             onClick={handleOpen}
             sx={{
-              textTransform: 'none',
+              textTransform: 'none', 
               padding: '6px 16px',
               fontSize: '14px',
-              minWidth: '100px',
+              minWidth: '100px', 
               height: '36px',
             }}
           >
@@ -138,7 +131,6 @@ export const RecipeReviewCard = ({ recipe }) => {
         </CardActions>
       </Card>
 
-      {/* Recipe Details Modal */}
       <RecipeDetailsModal open={open} onClose={handleClose} recipe={recipe} />
     </>
   );

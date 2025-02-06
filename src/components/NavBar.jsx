@@ -53,21 +53,31 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar({onFilterChange, onSearchChange}) {
+const StyledSelect = styled(Select)(({ theme }) => ({
+  color: 'white',
+  '& .MuiOutlinedInput-notchedOutline': {
+    borderColor: 'white',
+  },
+  '&:hover .MuiOutlinedInput-notchedOutline': {
+    borderColor: 'white',
+  },
+  '& .MuiSvgIcon-root': {
+    color: 'white',
+  },
+}));
+
+export default function SearchAppBar({ onFilterChange, onSearchChange }) {
   const [filter, setFilter] = React.useState('');
 
   const handleFilterChange = (event) => {
-
-
     const filterValue = event.target.value;
     setFilter(filterValue);
     onFilterChange(filterValue);
   };
 
-
   const handleSearchChange = (event) => {
     onSearchChange(event);
-  }
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -86,7 +96,7 @@ export default function SearchAppBar({onFilterChange, onSearchChange}) {
             variant="h6"
             noWrap
             component={Link}
-            to={'/'}
+            to="/"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
             Recipe App
@@ -101,34 +111,19 @@ export default function SearchAppBar({onFilterChange, onSearchChange}) {
               onChange={handleSearchChange}
             />
           </Search>
-          <FormControl
-            variant="outlined"
-            size="small"
-            sx={{ minWidth: 120, marginLeft: 2 }}
-          >
+          <FormControl variant="outlined" size="small" sx={{ minWidth: 120, marginLeft: 2 }}>
             <InputLabel>Filter</InputLabel>
-            <Select
+            <StyledSelect
               value={filter}
               onChange={handleFilterChange}
               label="Filter"
-              sx={{
-                color: 'white',
-                '& .MuiOutlinedInput-notchedOutline': {
-                  borderColor: 'white',
-                },
-                '&:hover .MuiOutlinedInput-notchedOutline': {
-                  borderColor: 'white',
-                },
-                '& .MuiSvgIcon-root': {
-                  color: 'white',
-                },
-              }}
+              aria-label="Filter recipes"
             >
-              <MenuItem value="dinner">Dinner</MenuItem>
-              <MenuItem value="breakfast">Breakfast</MenuItem>
-              <MenuItem value="lunch">Lunch</MenuItem>
+              <MenuItem value="Dinner">Dinner</MenuItem>
+              <MenuItem value="Breakfast">Breakfast</MenuItem>
+              <MenuItem value="Lunch">Lunch</MenuItem>
               <MenuItem value="">Clear All</MenuItem>
-            </Select>
+            </StyledSelect>
           </FormControl>
           <IconButton
             component={Link}

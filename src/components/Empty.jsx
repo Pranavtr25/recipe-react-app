@@ -15,7 +15,6 @@ const EmptyFavorites = () => {
         textAlign: 'center',
       }}
     >
-      {/* Icon to represent empty favorites */}
       <Paper
         sx={{
           display: 'flex',
@@ -31,7 +30,6 @@ const EmptyFavorites = () => {
         <FavoriteBorderIcon sx={{ fontSize: '48px', color: '#ccc' }} />
       </Paper>
 
-      {/* Message to indicate that the favorites are empty */}
       <Typography variant="h6" color="text.secondary" gutterBottom>
         Your favorites are currently empty.
       </Typography>
@@ -40,7 +38,6 @@ const EmptyFavorites = () => {
         Start adding your favorite recipes to this list!
       </Typography>
 
-      {/* Button to allow the user to add favorites */}
       <Link to="/" style={{ textDecoration: 'none' }}>
         <Button
           variant="contained"

@@ -1,29 +1,32 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    favourites : [],  // list of favourite recipes
-    recipes : []      // list of fetched recipes
+    favourites: [],  // List of favourite recipes
+    recipes: []      // List of fetched recipes
 };
 
 const recipeSlice = createSlice({
-    name : 'recipe',
+    name: 'recipe',
     initialState,
-    reducers : {
-        setRecipes : (state, action) => {
-            state.recipes = action.payload;  // save fetched recipes
+    reducers: {
+        // Save fetched recipes
+        setRecipes: (state, action) => {
+            state.recipes = action.payload;
         },
-        addFavourite : (state, action) => {
+        // Add to favourites if not already present
+        addFavourite: (state, action) => {
             const recipe = action.payload;
-            if(!state.favourites.find((fav) => fav.id === recipe.id)){
-                state.favourites.push(recipe); // Add to favorites if not already present
+            if (!state.favourites.find((fav) => fav.id === recipe.id)) {
+                state.favourites.push(recipe);
             }
         },
-        removeFavourite : (state, action) => {
-            state.favourites = state.favourites.filter((fav) => fav.id !== action.payload); // remove from favourites by filtering if matched
+        // Remove recipe from favourites
+        removeFavourite: (state, action) => {
+            state.favourites = state.favourites.filter((fav) => fav.id !== action.payload);
         }
     }
-})
+});
 
-export const {setRecipes, addFavourite, removeFavourite} = recipeSlice.actions;
+export const { setRecipes, addFavourite, removeFavourite } = recipeSlice.actions;
 
 export default recipeSlice.reducer;
