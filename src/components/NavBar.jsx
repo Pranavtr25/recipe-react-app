@@ -11,6 +11,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import { Link } from 'react-router-dom';
+import HomeIcon from '@mui/icons-material/Home';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -80,6 +81,7 @@ export default function SearchAppBar({ onFilterChange, onSearchChange }) {
   };
 
   return (
+
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
@@ -88,7 +90,10 @@ export default function SearchAppBar({ onFilterChange, onSearchChange }) {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 }}
+            sx={{ 
+              mr: 2, 
+              display: { xs: 'none', sm: 'block' } // Hide drawer on small screens
+            }}
           >
             <MenuIcon />
           </IconButton>
@@ -97,10 +102,26 @@ export default function SearchAppBar({ onFilterChange, onSearchChange }) {
             noWrap
             component={Link}
             to="/"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            sx={{ 
+              flexGrow: 1, 
+              display: { xs: 'none', sm: 'block' }, // Show text only on larger screens
+              fontSize: '1.25rem' 
+            }}
           >
             Recipe App
           </Typography>
+          <IconButton
+            component={Link}
+            to="/"
+            color="inherit"
+            aria-label="home"
+            sx={{ 
+              display: { xs: 'block', sm: 'none' }, // Show home icon only on small screens
+              marginLeft: 'auto'
+            }}
+          >
+            <HomeIcon />
+          </IconButton>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -139,5 +160,7 @@ export default function SearchAppBar({ onFilterChange, onSearchChange }) {
         </Toolbar>
       </AppBar>
     </Box>
+
+
   );
 }
