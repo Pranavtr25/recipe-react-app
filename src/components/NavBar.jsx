@@ -92,11 +92,26 @@ export default function SearchAppBar({ onFilterChange, onSearchChange }) {
             aria-label="open drawer"
             sx={{ 
               mr: 2, 
-              display: { xs: 'none', sm: 'block' } // Hide drawer on small screens
+              display: { xs: 'none', sm: 'none', md: 'block' } 
             }}
           >
             <MenuIcon />
           </IconButton>
+    
+          <IconButton
+            component={Link}
+            to="/"
+            size="large"
+            color="inherit"
+            aria-label="home"
+            sx={{ 
+              mr: 2, 
+              display: { xs: 'block', sm: 'block', md: 'none' } 
+            }}
+          >
+            <HomeIcon />
+          </IconButton>
+    
           <Typography
             variant="h6"
             noWrap
@@ -104,24 +119,13 @@ export default function SearchAppBar({ onFilterChange, onSearchChange }) {
             to="/"
             sx={{ 
               flexGrow: 1, 
-              display: { xs: 'none', sm: 'block' }, // Show text only on larger screens
-              fontSize: '1.25rem' 
+              display: { xs: 'none', sm: 'block' }, 
+              fontSize: { sm: '1.25rem', md: '1.5rem' } 
             }}
           >
             Recipe App
           </Typography>
-          <IconButton
-            component={Link}
-            to="/"
-            color="inherit"
-            aria-label="home"
-            sx={{ 
-              display: { xs: 'block', sm: 'none' }, // Show home icon only on small screens
-              marginLeft: 'auto'
-            }}
-          >
-            <HomeIcon />
-          </IconButton>
+    
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -132,6 +136,7 @@ export default function SearchAppBar({ onFilterChange, onSearchChange }) {
               onChange={handleSearchChange}
             />
           </Search>
+    
           <FormControl variant="outlined" size="small" sx={{ minWidth: 120, marginLeft: 2 }}>
             <InputLabel>Filter</InputLabel>
             <StyledSelect
@@ -146,6 +151,7 @@ export default function SearchAppBar({ onFilterChange, onSearchChange }) {
               <MenuItem value="">Clear All</MenuItem>
             </StyledSelect>
           </FormControl>
+    
           <IconButton
             component={Link}
             to="/favorites"
@@ -160,7 +166,6 @@ export default function SearchAppBar({ onFilterChange, onSearchChange }) {
         </Toolbar>
       </AppBar>
     </Box>
-
-
+    
   );
 }
