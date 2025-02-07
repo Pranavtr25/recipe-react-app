@@ -4,17 +4,16 @@ import { Close as CloseIcon } from '@mui/icons-material';
 import img from '../assets/images/img-1.jpg';
 
 const RecipeDetailsModal = ({ open, onClose, recipe }) => {
-  
   const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 600,
+    width: { xs: '90%', sm: '80%', md: '600px' }, 
     bgcolor: '#fff',
     boxShadow: 24,
     borderRadius: '15px',
-    p: 4,
+    p: { xs: 2, sm: 3, md: 4 }, 
     display: 'flex',
     flexDirection: 'column',
     maxHeight: '80vh',
@@ -56,7 +55,7 @@ const RecipeDetailsModal = ({ open, onClose, recipe }) => {
           alt={recipe?.name || 'Recipe'}
           sx={{
             width: '100%',
-            height: '200px',
+            height: { xs: '150px', sm: '200px' }, 
             objectFit: 'cover',
             borderRadius: '8px',
             mb: 3,
@@ -65,7 +64,7 @@ const RecipeDetailsModal = ({ open, onClose, recipe }) => {
 
         <Typography
           id="recipe-title"
-          variant="h4"
+          variant="h5" 
           component="h2"
           gutterBottom
           sx={{
@@ -73,6 +72,7 @@ const RecipeDetailsModal = ({ open, onClose, recipe }) => {
             color: '#333',
             mb: 2,
             textAlign: 'center',
+            fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem' }, 
           }}
         >
           {recipe?.name}
@@ -83,7 +83,7 @@ const RecipeDetailsModal = ({ open, onClose, recipe }) => {
             <strong>Calories:</strong> {recipe?.caloriesPerServing || 'N/A'} kcal
           </Typography>
           <Typography variant="body1" color="text.primary" sx={{ fontWeight: '500', mb: 1 }}>
-            <strong>Meal Type:</strong> {recipe?.mealType || 'N/A'}
+            <strong>Meal Type:</strong> {recipe?.mealType?.join(', ') || 'N/A'}
           </Typography>
           <Typography variant="body1" color="text.primary" sx={{ fontWeight: '500', mb: 1 }}>
             <strong>Preparation Time:</strong> {recipe?.cookTimeMinutes || 'N/A'} mins
@@ -98,13 +98,13 @@ const RecipeDetailsModal = ({ open, onClose, recipe }) => {
 
         <Divider sx={{ my: 2 }} />
 
-        <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold', mb: 1 }}>
+        <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold', mb: 1, fontSize: { xs: '1rem', sm: '1.2rem' } }}>
           <strong>Ingredients:</strong>
         </Typography>
         <List>
           {recipe?.ingredients?.map((ingredient, index) => (
             <ListItem key={index} disablePadding sx={{ paddingLeft: 0 }}>
-              <ListItemText primary={ingredient} sx={{ color: '#555', fontSize: '16px' }} />
+              <ListItemText primary={ingredient} sx={{ color: '#555', fontSize: '14px' }} />
             </ListItem>
           ))}
         </List>

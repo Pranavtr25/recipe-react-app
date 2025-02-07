@@ -96,7 +96,7 @@ export const RecipeReviewCard = ({ recipe }) => {
               whiteSpace: 'nowrap',
             }}
           >
-            {recipe?.mealType || 'Meal Type'} 
+            {recipe?.mealType?.join(",") || 'Meal Type'} 
           </Typography>
         </CardContent>
 
